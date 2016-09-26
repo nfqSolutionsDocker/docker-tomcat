@@ -26,7 +26,7 @@ fi
 
 echo Configurando tomcat ...
 if [ ! -f /home/solutions/app/tomcat/bin/setenv.sh ]; then
-	sudo cp /home/solutions/setenv.sh /home/solutions/app/tomcat/bin/
+	cp /home/solutions/setenv.sh /home/solutions/app/tomcat/bin/
 	MEMORY=$(free -m | awk '/^Mem:/{print $2}')
 	let MIN=${MEMORY}/64
 	let MAX=${MEMORY}/4
