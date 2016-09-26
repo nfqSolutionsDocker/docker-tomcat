@@ -15,8 +15,7 @@ app:
   - "8080:8080"
  environment:
   - PACKAGES=
- command: /bin/bash -c "/home/solutions/install_packages.sh && /home/solutions/tomcat.sh"
  volumes:
-  - <mydirectory>:/usr/local/tomcat
+  - <mydirectory>:/home/solutions/app
  
 ```

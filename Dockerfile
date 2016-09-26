@@ -16,6 +16,11 @@ ENV TOMCAT_VERSION=7.0.70
 # Modificacion para solutions
 COPY index.html /home/solutions/
 COPY solutions.png /home/solutions/
+COPY setenv.sh /home/solutions/
+RUN sudo chown solutions:nfq /home/solutions/setenv.sh
+RUN sudo chmod 777 /home/solutions/setenv.sh
+RUN sudo chmod a+x /home/solutions/setenv.sh
+RUN sudo sed -i -e 's/\r$//' /home/solutions/setenv.sh
 
 # Script de arranque
 COPY tomcat.sh /home/solutions/

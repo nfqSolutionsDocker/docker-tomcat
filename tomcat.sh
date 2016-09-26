@@ -24,5 +24,14 @@ if [ ! -f /home/solutions/app/tomcat/bin/catalina.sh ]; then
     sudo mv /home/solutions/app/tomcat/webapps/ROOT/index.jsp /home/solutions/app/tomcat/webapps/ROOT/index.jsp.bak
 fi
 
+echo Configurando tomcat ...
+if [ ! -f /home/solutions/app/tomcat/bin/setenv.sh ]; then
+	sudo cp /home/solutions/setenv.sh /home/solutions/app/tomcat/bin/
+	MEMORY=$(free -m | awk '/^Mem:/{print $2}')
+	let MIN=${MEMORY}/64
+	let MAX=${MEMORY}/4
+	echo "export CATALINA_OPTS=\"\$CATALINA_OPTS -Xms${MIN}m -Xmx${MAX}m -XX:+AggressiveOpts -XX:-UseGCOverheadLimit -XX:MaxPermSize=512m\"" >> /home/solutions/app/tomcat/bin/setenv.sh
+fi
+
 echo Ejecutando tomcat ...
 catalina.sh run
