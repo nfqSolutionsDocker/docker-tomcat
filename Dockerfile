@@ -1,31 +1,21 @@
-FROM nfqsolutions/java:7-jdk
+FROM nfqsolutions/centos:7
 
 MAINTAINER solutions@nfq.com
 
-# Variables de entorno
-ENV CATALINA_HOME /usr/local/tomcat
-ENV PATH $PATH:$CATALINA_HOME/bin
-ARG TOMCAT_VERSION=7.0.70
+# Instalacion previa
+RUN sudo yum install -y wget
 
-# Instalacion de TOMCAT 7.0.70
-RUN sudo wget -P /usr/local/ "http://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz"
-RUN sudo tar -xvzf /usr/local/apache-tomcat-${TOMCAT_VERSION}.tar.gz -C /usr/local/
-RUN sudo chown -R solutions:nfq $(ls -d /usr/local/apache-tomcat*/)
-RUN sudo chmod -R 777 $(ls -d /usr/local/apache-tomcat*/)
-RUN sudo ln -sf $(ls -d /usr/local/apache-tomcat*/) /usr/local/tomcat
-RUN sudo chmod a+x /usr/local/tomcat/bin/catalina.sh
+# Variables de entorno
+ENV JAVA_HOME /home/solutions/app/java
+ENV JAVA_TOOL_OPTIONS -Dfile.encoding=UTF8
+ENV CATALINA_HOME /home/solutions/app/tomcat
+ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
+ENV JAVA_VERSION=7u80
+ENV TOMCAT_VERSION=7.0.70
 
 # Modificacion para solutions
-COPY index.html /usr/local/tomcat/webapps/ROOT/
-COPY solutions.png /usr/local/tomcat/webapps/ROOT/
-RUN sudo mv /usr/local/tomcat/webapps/ROOT/index.jsp /usr/local/tomcat/webapps/ROOT/index.jsp.bak
-RUN sudo chown -R solutions:nfq /usr/local/tomcat
-
-# Copia de seguridad
-RUN sudo cp -R /usr/local/apache-tomcat-${TOMCAT_VERSION} /usr/local/tomcat.bak
-RUN sudo chown -R solutions:nfq /usr/local/tomcat.bak
-RUN sudo chmod -R 777 /usr/local/tomcat.bak
-RUN sudo chmod a+x /usr/local/tomcat.bak/bin/catalina.sh
+COPY index.html /home/solutions/
+COPY solutions.png /home/solutions/
 
 # Script de arranque
 COPY tomcat.sh /home/solutions/
@@ -35,7 +25,12 @@ RUN sudo chmod a+x /home/solutions/tomcat.sh
 RUN sudo sed -i -e 's/\r$//' /home/solutions/tomcat.sh
 
 # Volumenes para el tomcat
-VOLUME /usr/local/tomcat
+VOLUME /home/solutions/app
 
 # Puerto de salida del tomcat
 EXPOSE 8080
+
+# Copy supervisor file
+COPY supervisord.conf /etc/supervisord.conf
+
+CMD ["/usr/bin/supervisord"]
