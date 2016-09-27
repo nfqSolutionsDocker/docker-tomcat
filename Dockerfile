@@ -9,9 +9,9 @@ RUN sudo yum install -y wget
 ENV JAVA_HOME=/home/solutions/app/java \
 	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 \
 	CATALINA_HOME=/home/solutions/app/tomcat \
-	PATH="$PATH":"$JAVA_HOME"/bin:"$CATALINA_HOME"/bin \
 	JAVA_VERSION=7u80 \
 	TOMCAT_VERSION=7.0.70
+ENV PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 
 # Modificacion para solutions
 COPY index.html /home/solutions/
