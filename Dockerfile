@@ -14,7 +14,9 @@ ENV JAVA_HOME=/home/solutions/app/java \
 	TOMCAT_VERSION=7.0.70
 
 # Modificacion para solutions
-COPY [./index.html,./solutions.png,./setenv.sh /home/solutions/]
+COPY index.html /home/solutions/
+COPY solutions.png /home/solutions/
+COPY setenv.sh /home/solutions/
 RUN sudo chown solutions:nfq /home/solutions/setenv.sh && \
 	chmod 777 /home/solutions/setenv.sh && \
 	chmod a+x /home/solutions/setenv.sh && \
