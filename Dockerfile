@@ -6,11 +6,11 @@ MAINTAINER solutions@nfq.com
 RUN sudo yum install -y wget
 
 # Variables de entorno
-ENV JAVA_HOME=/home/solutions/app/java && \
-	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 && \
-	CATALINA_HOME=/home/solutions/app/tomcat && \
-	PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin && \
-	JAVA_VERSION=7u80 && \
+ENV JAVA_HOME=/home/solutions/app/java \
+	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 \
+	CATALINA_HOME=/home/solutions/app/tomcat \
+	PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin \
+	JAVA_VERSION=7u80 \
 	TOMCAT_VERSION=7.0.70
 
 # Modificacion para solutions
