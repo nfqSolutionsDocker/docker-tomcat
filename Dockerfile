@@ -6,31 +6,29 @@ MAINTAINER solutions@nfq.com
 RUN sudo yum install -y wget
 
 # Variables de entorno
-ENV JAVA_HOME=/home/solutions/app/java \
+ENV JAVA_HOME=/solutions/app/java \
 	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 \
-	CATALINA_HOME=/home/solutions/app/tomcat \
+	CATALINA_HOME=/solutions/app/tomcat \
 	JAVA_VERSION=7u80 \
 	TOMCAT_VERSION=7.0.70
 ENV PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 
 # Modificacion para solutions
-COPY index.html /home/solutions/
-COPY solutions.png /home/solutions/
-COPY setenv.sh /home/solutions/
-RUN sudo chown solutions:nfq /home/solutions/setenv.sh && \
-	chmod 777 /home/solutions/setenv.sh && \
-	chmod a+x /home/solutions/setenv.sh && \
-	sed -i -e 's/\r$//' /home/solutions/setenv.sh
+COPY index.html /solutions/
+COPY solutions.png /solutions/
+COPY setenv.sh /solutions/
+RUN chmod 777 /solutions/setenv.sh && \
+	chmod a+x /solutions/setenv.sh && \
+	sed -i -e 's/\r$//' /solutions/setenv.sh
 
 # Script de arranque
-COPY tomcat.sh /home/solutions/
-RUN sudo chown solutions:nfq /home/solutions/tomcat.sh && \
-	chmod 777 /home/solutions/tomcat.sh && \
-	chmod a+x /home/solutions/tomcat.sh && \
-	sed -i -e 's/\r$//' /home/solutions/tomcat.sh
+COPY tomcat.sh /solutions/
+RUN chmod 777 /solutions/tomcat.sh && \
+	chmod a+x /solutions/tomcat.sh && \
+	sed -i -e 's/\r$//' /solutions/tomcat.sh
 
 # Volumenes para el tomcat
-VOLUME /home/solutions/app
+VOLUME /solutions/app
 
 # Puerto de salida del tomcat
 EXPOSE 8080
