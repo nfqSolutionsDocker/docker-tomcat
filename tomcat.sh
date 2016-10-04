@@ -9,7 +9,8 @@ if [ ! -f /solutions/app/java/bin/java ]; then
     	"http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}-b15/jdk-${JAVA_VERSION}-linux-x64.tar.gz"
 	tar -xvzf /solutions/app/jdk-${JAVA_VERSION}-linux-x64.tar.gz -C /solutions/app/
 	chmod -R 777 $(ls -d /solutions/app/jdk*/)
-	ln -sf $(ls -d /solutions/app/jdk*/) /solutions/app/java
+	#ln -sf $(ls -d /solutions/app/jdk*/) /solutions/app/java
+	mv $(ls -d /solutions/app/jdk*/) /solutions/app/java
 fi
 
 echo Instalando tomcat ...
@@ -17,7 +18,8 @@ if [ ! -f /solutions/app/tomcat/bin/catalina.sh ]; then
 	wget -P /solutions/app/ "http://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz"
 	tar -xvzf /solutions/app/apache-tomcat-${TOMCAT_VERSION}.tar.gz -C /solutions/app/
 	chmod -R 777 $(ls -d /solutions/app/apache-tomcat*/)
-	ln -sf $(ls -d /solutions/app/apache-tomcat*/) /solutions/app/tomcat
+	#ln -sf $(ls -d /solutions/app/apache-tomcat*/) /solutions/app/tomcat
+	mv $(ls -d /solutions/app/apache-tomcat*/) /solutions/app/tomcat
 	chmod a+x /solutions/app/tomcat/bin/catalina.sh
 	cp /solutions/index.html /solutions/app/tomcat/webapps/ROOT/
     cp /solutions/solutions.png /solutions/app/tomcat/webapps/ROOT/
