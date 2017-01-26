@@ -19,3 +19,8 @@ app:
   - <mydirectory>:/solutions/app
  
 ```
+
+
+### License
+
+Using this image implies accepting Oracle's [License](http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
