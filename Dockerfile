@@ -3,7 +3,7 @@ FROM nfqsolutions/centos:7
 MAINTAINER solutions@nfq.com
 
 # Instalacion previa
-RUN sudo yum install -y wget nodejs
+RUN sudo yum install -y wget
 
 # Variables de entorno
 ENV JAVA_HOME=/solutions/app/java \
