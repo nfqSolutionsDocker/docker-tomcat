@@ -3,15 +3,17 @@ FROM nfqsolutions/centos:7
 MAINTAINER solutions@nfq.com
 
 # Instalacion previa
-RUN sudo yum install -y wget
+RUN sudo yum install -y wget java-1.7.0-openjdk
 
 # Variables de entorno
-ENV JAVA_HOME=/solutions/app/java \
-	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 \
-	CATALINA_HOME=/solutions/app/tomcat \
-	JAVA_VERSION=7u80 \
+#ENV JAVA_HOME=/solutions/app/java \
+#	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 \
+#	CATALINA_HOME=/solutions/app/tomcat \
+#	JAVA_VERSION=7u80 \
+#	TOMCAT_VERSION=7.0.70
+ENV CATALINA_HOME=/solutions/app/tomcat \
 	TOMCAT_VERSION=7.0.70
-ENV PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
+ENV PATH=$PATH:$CATALINA_HOME/bin
 
 # Modificacion para solutions
 COPY index.html /solutions/
