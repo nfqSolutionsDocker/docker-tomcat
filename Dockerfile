@@ -12,6 +12,7 @@ RUN sudo yum install -y wget java-1.7.0-openjdk
 #	JAVA_VERSION=7u80 \
 #	TOMCAT_VERSION=7.0.70
 ENV CATALINA_HOME=/solutions/app/tomcat \
+	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 \
 	TOMCAT_VERSION=7.0.70
 ENV PATH=$PATH:$CATALINA_HOME/bin
 
