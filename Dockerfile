@@ -3,6 +3,8 @@ FROM nfqsolutions/centos:7
 MAINTAINER solutions@nfq.com
 
 # Instalacion previa
+RUN sudo yum check-update
+RUN sudo yum update
 RUN sudo yum install -y wget java-1.7.0-openjdk
 
 # Variables de entorno
