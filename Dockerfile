@@ -4,7 +4,7 @@ MAINTAINER solutions@nfq.com
 
 # Instalacion previa
 RUN sudo yum update -y
-RUN sudo yum install -y wget java-1.7.0-openjdk
+RUN sudo yum install -y wget java-1.8.0-openjdk
 
 # Variables de entorno
 ENV CATALINA_HOME=/solutions/app/tomcat \
