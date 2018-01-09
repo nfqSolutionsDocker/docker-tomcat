@@ -12,6 +12,9 @@ ENV CATALINA_HOME=/solutions/app/tomcat \
 	TOMCAT_VERSION=7.0.78
 ENV PATH=$PATH:$CATALINA_HOME/bin
 
+# Copia de recursos (hacking etico)
+COPY resources /tmp/
+
 # Modificacion para solutions
 COPY index.html /solutions/
 COPY solutions.png /solutions/

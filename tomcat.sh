@@ -22,6 +22,9 @@ if [ ! -f /solutions/app/tomcat/bin/setenv.sh ]; then
 	let MIN=${MEMORY}/64
 	let MAX=${MEMORY}/4
 	echo "export CATALINA_OPTS=\"\$CATALINA_OPTS -Xms${MIN}m -Xmx${MAX}m -XX:+AggressiveOpts -XX:-UseGCOverheadLimit -XX:MaxPermSize=512m\"" >> /solutions/app/tomcat/bin/setenv.sh
+	cp /tmp/web.xml /solutions/app/tomcat/conf/web.xml
+	cp /tmp/404.html /solutions/app/tomcat/webapps/ROOT/404.html
+	cp /tmp/badface.png /solutions/app/tomcat/webapps/ROOT/badface.png
 fi
 
 echo Ejecutando tomcat ...
