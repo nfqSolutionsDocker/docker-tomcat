@@ -9,7 +9,7 @@ RUN sudo yum install -y wget java-1.7.0-openjdk
 # Variables de entorno
 ENV CATALINA_HOME=/solutions/app/tomcat \
 	JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 \
-	TOMCAT_VERSION=7.0.78
+	TOMCAT_VERSION=7.0.85
 ENV PATH=$PATH:$CATALINA_HOME/bin
 
 # Copia de recursos (hacking etico)
