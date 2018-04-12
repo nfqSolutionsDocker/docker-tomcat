@@ -27,6 +27,7 @@ if [ ! -f /solutions/app/tomcat/bin/setenv.sh ]; then
 	cp /tmp/badface.png /solutions/app/tomcat/webapps/ROOT/badface.png
 	cp /tmp/server.xml /solutions/app/tomcat/conf/server.xml
 	rm -Rf /solutions/app/tomcat/webapps/examples
+	rm -Rf /solutions/app/tomcat/webapps/manager
 fi
 
 echo Ejecutando tomcat ...
